@@ -1,0 +1,25 @@
+#lang racket
+(define (expt b n)
+  (if (= n 0) 1
+      (* b (expt b (- n 1)))
+      )
+  )
+
+(define (square x)
+  (* x x)
+  )
+(define (fast-expt b n)
+  
+  (define (odd? n)
+    (= 0 (remainder n 2))
+    )
+  (cond ((= n 0) 1)
+        ((odd? n) (square (fast-expt b (/ n 2))))
+        (else (* b (fast-expt b (- n 1))))
+        )
+  )
+(= 0 (remainder 10 2))
+(fast-expt 2 2)
+(fast-expt 2 10)
+(fast-expt 2 1000)
+(expt 2 1000)
