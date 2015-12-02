@@ -1,4 +1,6 @@
 #lang racket
+(provide prime?)
+
 (define (square n)
   (* n n)
   )

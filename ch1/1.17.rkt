@@ -11,7 +11,7 @@
     )
   (cond
     ((= b 0) 0)
-    ((odd? b) (fast-multi (double a) (half b)))
+    ((even? b) (fast-multi (double a) (half b)))
       (else (+ a (fast-multi a (- b 1))))
       )
   )
