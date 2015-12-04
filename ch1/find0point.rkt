@@ -1,5 +1,8 @@
 #lang racket
 
+(provide fix-point)
+(provide 
+
 (define (println str)
   (display str)
   (newline)

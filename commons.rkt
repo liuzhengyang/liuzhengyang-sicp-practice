@@ -24,3 +24,29 @@
 (define (average a b)
   (/ (+ a b) 2)
   )
+
+;; 求幂
+(define (exp base n)
+  (cond ((= n 0) 1)
+        ((odd? n) (* base (exp base (- n 1))))
+        (else (square (exp base (/ n 2))))))
+
+
+(define tolerance 0.00001)
+(define (close? a b)
+  (< (abs (- a b)) tolerance))
+
+(define (damp f)
+  (lambda (x) (average x (f x))))
+(define (fix-point f)
+  (define (fix-point1 f guess)
+    (if (close? guess (f guess)) guess
+        (fix-point1 f (f guess))))
+  (fix-point1 (damp f) 1.0)
+  )
+
+
+(define (sqrt x)
+  (fix-point (lambda (y) (/ x y))))
+
+(sqrt 1024)

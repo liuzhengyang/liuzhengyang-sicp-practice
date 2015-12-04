@@ -2,6 +2,12 @@
 
 (require "../commons.rkt")
 
+(provide x-point)
+(provide y-point)
+(provide make-point)
+(provide make-segment)
+(provide start-segment)
+(provide end-segment)
 
 (define (make-point x y) (cons x y))
 
