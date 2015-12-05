@@ -4,6 +4,7 @@
 (provide gcd)
 (provide abs)
 (provide average)
+(provide base-exp)
 
 
 
@@ -26,10 +27,10 @@
   )
 
 ;; 求幂
-(define (exp base n)
+(define (base-exp base n)
   (cond ((= n 0) 1)
-        ((odd? n) (* base (exp base (- n 1))))
-        (else (square (exp base (/ n 2))))))
+        ((odd? n) (* base (base-exp base (- n 1))))
+        (else (square (base-exp base (/ n 2))))))
 
 
 (define tolerance 0.00001)
@@ -48,5 +49,3 @@
 
 (define (sqrt x)
   (fix-point (lambda (y) (/ x y))))
-
-(sqrt 1024)
