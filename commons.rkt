@@ -6,6 +6,8 @@
 (provide average)
 (provide base-exp)
 
+(define nil '())
+
 
 
 ;; 平方
