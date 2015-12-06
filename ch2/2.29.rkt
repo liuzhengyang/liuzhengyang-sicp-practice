@@ -25,17 +25,28 @@
       (* (branch-length branch) (total-weight (branch-structure branch)))))
 
 (define (balance? mobile)
-  (= (moment (mobile-left mobile)) (moment (mobile-right mobile))))
+  (define (struct? branch)
+    (pair? (branch-structure branch)))
+  (define (balance-branch? branch)
+    (if (struct? branch)
+        (balance? (branch-structure branch))
+        #t))
+        
+  (and
+   (balance-branch? (mobile-left mobile))
+   (balance-branch? (mobile-right mobile))
+   (= (moment (mobile-left mobile)) (moment (mobile-right mobile)))))
 
 
 (define left-b (make-branch 10 3))
-(define right-b (make-branch 2 4))
+(define right-b (make-branch 3 10))
 (define mobile (make-mobile left-b right-b))
 (total-weight mobile)
 
 
-(define com-mobile (make-mobile (make-branch 3 mobile) (make-branch 10 242)))
+(define com-mobile (make-mobile (make-branch 3 mobile) (make-branch 1 39)))
 (total-weight com-mobile)
 
 (balance? com-mobile)
+(balance? mobile)
 

@@ -33,8 +33,3 @@
 (deep-reverse (list (list 2) (list 3 4)))
 
 (deep-reverse '((1)))
-
-
-(define (my-fordr fn start lst)
-  (if (null? list) start
-      
