@@ -6,6 +6,7 @@
 (provide average)
 (provide base-exp)
 (provide accumulate)
+(provide nil)
 
 (define nil '())
 
