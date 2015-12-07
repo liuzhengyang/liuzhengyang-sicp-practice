@@ -8,6 +8,10 @@
 (provide accumulate)
 (provide accumulate-n)
 (provide nil)
+(provide prime?)
+(provide flatmap)
+(provide filter)
+(provide enumerate-interval)
 
 (define nil '())
 
@@ -63,3 +67,22 @@
   (if (null? (car lst)) nil
       (cons (accumulate op init (map car lst))
             (accumulate-n op init (map cdr lst)))))
+
+(define (prime? n)
+  (define (prime-iter i)
+    (cond ((> (square i) n) true)
+          ((= (remainder n i) 0) false)
+          (else (prime-iter (+ i 1)))))
+  (prime-iter 2))
+
+(define (flatmap proc seq)
+  (accumulate append nil (map proc seq)))
+
+(define (filter preconditions? seq)
+  (cond ((null? seq) nil)
+      ((preconditions? (car seq)) (cons (car seq) (filter preconditions? (cdr seq))))
+      (else (filter preconditions? (cdr seq)))))
+
+(define (enumerate-interval low high)
+  (if (> low high) nil
+      (cons low (enumerate-interval (+ low 1) high))))
