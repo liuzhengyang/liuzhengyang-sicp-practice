@@ -5,6 +5,7 @@
 (provide abs)
 (provide average)
 (provide base-exp)
+(provide accumulate)
 
 (define nil '())
 
@@ -51,3 +52,7 @@
 
 (define (sqrt x)
   (fix-point (lambda (y) (/ x y))))
+
+(define (accumulate op initial lst)
+  (if (null? lst) initial
+      (op (car lst) (accumulate op initial (cdr lst)))))
