@@ -6,6 +6,7 @@
 (provide average)
 (provide base-exp)
 (provide accumulate)
+(provide accumulate-n)
 (provide nil)
 
 (define nil '())
@@ -57,3 +58,8 @@
 (define (accumulate op initial lst)
   (if (null? lst) initial
       (op (car lst) (accumulate op initial (cdr lst)))))
+
+(define (accumulate-n op init lst)
+  (if (null? (car lst)) nil
+      (cons (accumulate op init (map car lst))
+            (accumulate-n op init (map cdr lst)))))
