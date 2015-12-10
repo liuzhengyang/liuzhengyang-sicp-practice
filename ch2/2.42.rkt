@@ -6,17 +6,16 @@
   (let ((valuek (list-ref positions (- k 1)))
         (valuei (list-ref positions (- i 1))))
     (nor (= valuek valuei)
-         (= (abs (- i k)) (abs (- valuek valuei)))))))
+         (= (abs (- i k)) (abs (- valuek valuei))))))
 
 (define (safe? k positions)
   (define (safe-iter i)
     (if (= i k) true
         (if (not (safe-with-col k i positions)) false
             (safe-iter (+ i 1)))))
-  (safe-iter 1)
-  )
+  (safe-iter 1))
 
-(define (adjoin-position new-row k rest-of-queens)
+(define (adjoin-position new-row rest-of-queens)
   (append rest-of-queens (list new-row)))
 
 (define (queens board-size)
@@ -27,7 +26,7 @@
            (flatmap
             (lambda (rest-of-queens)
               (map (lambda (new-row)
-                     (adjoin-position new-row k rest-of-queens))
+                     (adjoin-position new-row rest-of-queens))
                    (enumerate-interval 1 board-size)))
             (queen-cols (- k 1))))))
   (queen-cols board-size))
@@ -50,5 +49,13 @@
 (map (lambda (x) ( + x 1))
      (map square
           (gen-list 1 5)))
+( accumulate  +  0 
+     ( filter ( lambda ( x ) ( > x  0 ) )
+         ( map ( lambda ( x ) ( - x  5 ) )
+            (enumerate-interval 1 10 ) ) ) )
 
-
+( define  ( gen-list2  start  end )
+   (  define  ( gen-iter  next  result )
+         ( if  ( < next  start )  result
+              ( gen-iter  ( - next 1 )  (cons next result ) ) ) )
+   ( gen-iter  end  nil ) )

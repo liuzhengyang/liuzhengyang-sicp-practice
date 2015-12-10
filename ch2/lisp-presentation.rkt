@@ -51,6 +51,6 @@
     ( accumulate  append  nil 
          ( map  proc  seq ))) 
 
-(map (lambda (x) (gen-list 1 x)) (list 1 2 3))
+(map (lambda (x) (gen-list 1 x)) (list 1 2 3)
 (flatmap (lambda (x) (gen-list 1 x)) (list 1 2 3))
 
